@@ -1,12 +1,14 @@
 from aiogram import html
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.types import Message
-
-from main import bcID
 from .get_stats import *
 
 
 async def process_list(days: int, period: str, message: Message) -> tuple:
+    # Exit if run from DMs
+    if message.chat.type == "private":
+        return ["Ошибка: команда не доступна в личных сообщениях"], -1
+
     # Default are 10 users
     stats = await get_stats(days, 10)
     ids, counts = stats[0]
@@ -16,7 +18,7 @@ async def process_list(days: int, period: str, message: Message) -> tuple:
     for user_id in ids:
         # Chat ID is set to bc filter ID for proper work in DM
         try:
-            user = await message.bot.get_chat_member(bcID, user_id)
+            user = await message.bot.get_chat_member(message.chat.id, user_id)
             names.append(user.user.full_name)
         # Doesn't work rarely for some reason, append the user id in case of exception
         except TelegramBadRequest:
