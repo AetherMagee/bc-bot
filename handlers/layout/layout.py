@@ -20,7 +20,7 @@ invert = {
 }
 
 
-async def invert_layout(message: str) -> None:
+async def invert_layout(message: str) -> str:
     result = ""
     for character in message:
         try:
