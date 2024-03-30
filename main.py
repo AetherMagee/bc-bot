@@ -10,7 +10,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from handlers import *
 from static.tokens import *
 
-bcID = -1001474397357
+bcID = -1001267902926
 bcMessageFilter = F.chat.id == bcID
 bcCallbackFilter = F.message.chat.id == bcID
 
