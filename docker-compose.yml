@@ -1,0 +1,7 @@
+services:
+  bc-bot:
+    build: .
+    restart: unless-stopped
+    container_name: bc-bot
+    volumes:
+      - ./static:/bot/static
