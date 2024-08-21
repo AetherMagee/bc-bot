@@ -1,10 +1,9 @@
 import re
-import aiohttp
 from aiogram import html
 from aiogram.types import Message
 from aiogram.filters import CommandObject
 
-from .currency_emojis import *
+from handlers.currencies.currency_emojis import *
 from .default_pairs import *
 from .get_pair import *
 
